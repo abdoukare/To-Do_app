@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:week4_task/provider/TaskModel.dart';
+import 'package:week4_task/view/AddTasksView.dart';
+import 'package:week4_task/view/ListTasksView.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => Taskmodel())],
+
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MainPage());
-  }
-}
-
-class MainPage extends StatefulWidget {
-  @override
-  _MainPageState createState() => _MainPageState();
-}
-
-class _MainPageState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [ElevatedButton(onPressed: () {}, child: Text('save'))],
-        ),
-      ),
+    return MaterialApp(
+      title: 'test',
+      home: ListTasksView(),
+      routes: {"listTasks": (context) => ListTasksView(),
+	  "addTasks": (context) => AddTasksView(),
+	  },
     );
   }
 }
