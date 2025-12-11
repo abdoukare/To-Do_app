@@ -34,6 +34,10 @@ class Taskmodel extends ChangeNotifier {
   ];
 
   List<Task> get todotasks => _todotasks;
+  void add(Task _task) {
+    _todotasks.add(_task);
+    notifyListeners();
+  }
   void markDone(int index, bool _status) {
     _todotasks[index].status = _status;
     notifyListeners();
