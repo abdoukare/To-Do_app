@@ -56,14 +56,28 @@ class _AddTasksViewState extends State<AddTasksView> {
                       },
                       calendarBuilders: CalendarBuilders(
                         markerBuilder: (context, datetime, events) {
-                          return Container(
-                            width: 20,
-                            height: 10,
-                            decoration: BoxDecoration(
-                              color: Colors.primaries.first,
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                          );
+							// a condition where a specefic day = 0 dont show 0 in calendar
+                          return model.countTaskByDate(datetime) > 0
+                              ? Container(
+                                  width: 20,
+                                  height: 15,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Colors.primaries[model.countTaskByDate(
+                                          datetime,
+                                        )],
+                                    borderRadius: BorderRadius.circular(4.0),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      model
+                                          .countTaskByDate(datetime)
+                                          .toString(),
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                )
+                              : Container();
                         },
                       ),
                     ),
