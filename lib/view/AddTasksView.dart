@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:week4_task/library/globals.dart' as globals;
 import 'package:week4_task/model/Task.dart';
 import 'package:week4_task/provider/TaskModel.dart';
 
